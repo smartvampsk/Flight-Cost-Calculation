@@ -1,5 +1,5 @@
 # Flight-Cost-Calculation
-caclulates the cost of flight
+caclulates the cost of flight (HTML And JavaScript)
 * choose route
 * choose seating class
 * tick if want to return in the same flight
