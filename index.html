@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>Flight Cost Calculation</title>
+      <style type="text/css">
+         section{margin-left: 35%;}
+      </style>
+   </head>
+   <body>
+      <section>
+         <h1>Hawkins Airlines Fare Calculator</h1>
+         <p>Complete the form below to calculate the cost of your flight</p>
+         <form>
+            <label>Route:</label><br>
+            <input type="radio" name="route" class="route" value="229"><label>Hawkins - Riverdale </label> <br>
+            <input type="radio" name="route" class="route" value="259"><label>Hawkins - Haddonfield </label> <br>
+            <input type="radio" name="route" class="route" value="199"><label>Hawkins - Rockwell </label> <br>
+            <input type="radio" name="route" class="route" value="179"><label>Hawkins - Eagleton </label> <br>
+            <input type="radio" name="route" class="route" value="179"><label>Hawkins - Pawnee </label> <br>
+            <input type="radio" name="route" class="route" value="239"><label>Hawkins - Twin Peaks </label>
+            <br> <br>
+            <label>Click here if you will be purchasing a return fare: </label> <input type="checkbox" name="returnFare" id="returnFare" value="2">
+            <br><br>
+            <label>Seating class:</label><br>
+            <input type="radio" name="seatClass" class="seatClass" value="2"><label>First Class</label> <br>
+            <input type="radio" name="seatClass" class="seatClass" value="1.5"><label>Business Class</label> <br>
+            <input type="radio" name="seatClass" class="seatClass" value="1"><label>Economy Class</label> <br><br>
+            <input type="submit" name="submit" value="Calculate" onclick="calculateCost()">
+            <input type="reset" name="reset">
+         </form>
+      </section>
+      <script type="text/javascript">
+         function calculateCost(){
+         	var checkedRoute = document.getElementsByClassName('route');
+         	var checkedClass = document.getElementsByClassName('seatClass');
+         	var checkedReturn = document.getElementById('returnFare');
+         	var routeCost, classCost, returnCost, totalCost;
+         	var errorRoute = false, errorClass = false;
+         	var count1 = 0, count2 = 0;
+         
+         	for (var i = 0; i < 6; i++) {
+         		if (checkedRoute[i].checked == true) {
+         			routeCost = checkedRoute[i].value;
+         			errorRoute = false;
+         		}
+         		else{
+         			count1++;
+         		}
+         	}
+         	
+         	for (var i = 0; i < 3; i++) {
+         		if (checkedClass[i].checked == true) {
+         			classCost = checkedClass[i].value;
+         			errorClass = false;
+         		}
+         		else{
+         			count2++;
+         		}
+         	}
+         
+         	if (checkedReturn.checked == true) {
+         		returnCost = checkedReturn.value;
+         	}
+         	else{
+         		returnCost = 1;
+         	}
+         
+         
+         	if (count1>5) {
+         		errorRoute = true;
+         	}
+         	if (count2>2) {
+         		errorClass = true;
+         	}
+         
+         	if (errorRoute == false && errorClass == false) {
+         		totalCost = Math.round(routeCost * classCost * returnCost);
+         		alert("The cost of the flight is $"+totalCost);
+         	}
+         	else if(errorRoute == true && errorClass == true){
+         		alert("Both - Route and Class Not Selected");
+         	}
+         	else if(errorRoute == true){
+         		alert("Route Not Selected");
+         	}
+         	else if(errorClass == true){
+         		alert("Class Not Selected");
+         	}
+         
+         }
+      </script>
+   </body>
+</html>
